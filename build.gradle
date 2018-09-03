@@ -14,9 +14,25 @@ buildscript {
     }
 }
 
+plugins {
+    id 'com.github.ben-manes.versions' version '0.20.0'
+}
+
 allprojects {
     repositories {
         jcenter()
         google()
     }
+}
+
+// as suggested on #and_proj_5 channel on Slack by @littlegrasshopper [AND]
+ext {
+    minSdkVersion = 16
+    compileSdkVersion = 26
+    supportLibVersion = '26.1.0'
+    constraintLayoutLibVersion = '1.1.2'
+    junitLibVersion = '4.12'
+    testRunnerVersion = '1.0.2'
+    expressoCoreVersion = '3.0.2'
+    googleClientVersion = '1.23.0'
 }
