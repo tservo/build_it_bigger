@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PaidMainActivityFragment">
+    tools:context=".MainActivityFragment">
 
     <TextView
         android:id="@+id/instructions_text_view"
@@ -24,11 +23,10 @@
         android:text="@string/button_text" />
 
     <TextView
+        android:id="@+id/paid_thanks_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/joke_button"
-        android:text="@string/paid_thank_you"
-        android:id="@+id/paid_text_view"
-        />
-
+        android:text="@string/paid_thank_you"/>
+    
 </RelativeLayout>
