@@ -1,5 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,12 +13,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-
-import timber.log.Timber;
+import com.example.android.jokelibrary.JokeActivity;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.udacity.gradle.builditbigger.backend.jokeApi.JokeApi;
 import com.udacity.gradle.builditbigger.network.EndpointsAsyncTask;
 
+import java.io.IOException;
+import java.lang.ref.WeakReference;
 
-public class MainActivity extends AppCompatActivity {
+import timber.log.Timber;
+
+import static com.example.android.jokelibrary.JokeActivity.ARG_JOKE;
+
+
+public class PaidMainActivity extends AppCompatActivity {
 
 
     @Nullable
@@ -58,13 +72,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        // let's make the call to our endpoints server.
+        // let's route to our new android library.
         EndpointsAsyncTask jokeEndpointTask = new EndpointsAsyncTask(this, getIdlingResource());
         jokeEndpointTask.execute();
-
-
-
-        //Toast.makeText(this, mJokeSmith.getJoke(), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -83,5 +93,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-

@@ -11,11 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-import timber.log.Timber;
 import com.udacity.gradle.builditbigger.network.EndpointsAsyncTask;
 
+import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity {
+
+
+public class FreeMainActivity extends AppCompatActivity {
 
 
     @Nullable
@@ -58,13 +60,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        // let's make the call to our endpoints server.
+        // let's route to our new android library.
+
         EndpointsAsyncTask jokeEndpointTask = new EndpointsAsyncTask(this, getIdlingResource());
         jokeEndpointTask.execute();
 
-
-
-        //Toast.makeText(this, mJokeSmith.getJoke(), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -83,5 +83,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-

@@ -11,13 +11,13 @@ buildscript {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
-        minSdkVersion 16
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -31,6 +31,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions 'version'
+    productFlavors {
+        free {
+            dimension 'version'
+            applicationIdSuffix '.free'
+            versionNameSuffix '-free'
+        }
+        paid {
+            dimension 'version'
+            applicationIdSuffix '.paid'
+            versionNameSuffix '-paid'
+        }
+    }
+
+    // we were having trouble with META-INF being included more than once
+    // suggested by StackOverflow.https://stackoverflow.com/questions/44342455/more-than-one-file-was-found-with-os-independent-path-meta-inf-license
 
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -50,9 +67,10 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:' +
             rootProject.ext.supportLibVersion
 
-    // google endpoints services
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+    // ads service.  remove on paid flavor!
+    freeImplementation 'com.google.android.gms:play-services-ads:15.0.1'
 
+    // google endpoints services
     implementation 'com.google.api-client:google-api-client:' +
             rootProject.ext.googleClientVersion
     implementation 'com.google.http-client:google-http-client-android:' +
